@@ -1,4 +1,4 @@
-const VERSION = "0.4.1";
+const VERSION = "0.4.2";
 
 class HAPowerFlowCard extends HTMLElement {
   constructor() {
@@ -140,9 +140,9 @@ class HAPowerFlowCard extends HTMLElement {
     const nowHour = now.getHours();
 
     this.shadowRoot.innerHTML = `<style>
-      :host{display:block;--good:var(--dashboard-success, var(--success-color, #54d9aa));--warn:var(--dashboard-warning, var(--warning-color, #ffbd59));--danger:var(--dashboard-danger, var(--error-color, #ff667a));--accent:var(--dashboard-accent, var(--primary-color, #62b5ff));--edge:var(--dashboard-border-neutral, var(--divider-color, rgba(127,145,165,.2)))}
+      :host{display:block;--good:var(--dashboard-success, var(--success-color, #54d9aa));--warn:var(--dashboard-warning, var(--warning-color, #ffbd59));--danger:var(--dashboard-danger, var(--error-color, #ff667a));--accent:var(--dashboard-accent, var(--primary-color, #62b5ff));--edge:var(--dashboard-border-neutral, var(--divider-color, rgba(127,145,165,.2)));--card-surface:var(--dashboard-card-bg,var(--ha-card-background,var(--card-background-color,#111820)));--card-solid:var(--card-background-color,#111820)}
       *{box-sizing:border-box}
-      ha-card{position:relative;overflow:hidden;padding:20px;border-radius:26px;background:linear-gradient(150deg,color-mix(in srgb,var(--card-background-color) 94%,${tierColor} 6%),var(--card-background-color));border:1px solid color-mix(in srgb,var(--edge) 100%,transparent);color:var(--primary-text-color);box-shadow:var(--ha-card-box-shadow)}
+      ha-card{position:relative;overflow:hidden;padding:20px;border-radius:26px;background:linear-gradient(150deg,color-mix(in srgb,${tierColor} 6%,transparent),transparent 45%),var(--card-surface);border:1px solid color-mix(in srgb,var(--edge) 100%,transparent);color:var(--primary-text-color);box-shadow:var(--ha-card-box-shadow)}
       .head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
       .head-left small{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--secondary-text-color);font-weight:700}
       .price{display:flex;align-items:baseline;gap:6px;margin-top:4px}
@@ -154,18 +154,18 @@ class HAPowerFlowCard extends HTMLElement {
       .co2-chip{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:999px;font-size:10px;font-weight:800;background:color-mix(in srgb,${co2Color} 16%,transparent);color:${co2Color}}
       .co2-chip ha-icon{--mdc-icon-size:12px}
 
-      .flow{position:relative;height:176px;margin:16px 0 6px;border:1px solid color-mix(in srgb,var(--accent) 22%,var(--edge));border-radius:22px;overflow:hidden;isolation:isolate;background:linear-gradient(160deg,color-mix(in srgb,var(--card-background-color) 96%,var(--accent) 4%),color-mix(in srgb,var(--card-background-color) 97%,${tierColor} 3%))}
+      .flow{position:relative;height:176px;margin:16px 0 6px;border:1px solid color-mix(in srgb,var(--accent) 22%,var(--edge));border-radius:22px;overflow:hidden;isolation:isolate;background:linear-gradient(160deg,color-mix(in srgb,var(--card-solid) 96%,var(--accent) 4%),color-mix(in srgb,var(--card-solid) 97%,${tierColor} 3%))}
       .flow:before{content:"";position:absolute;inset:0;z-index:-2;opacity:.45;background-image:linear-gradient(color-mix(in srgb,var(--primary-text-color) 5%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--primary-text-color) 5%,transparent) 1px,transparent 1px);background-size:24px 24px;mask-image:linear-gradient(to bottom,transparent,black 32%,transparent)}
       .flow:after{content:"";position:absolute;left:50%;top:48%;width:150px;height:150px;border-radius:50%;z-index:-1;transform:translate(-50%,-50%);background:color-mix(in srgb,var(--accent) 9%,transparent);filter:blur(18px);animation:core-breathe 3.2s ease-in-out infinite}
       .flow-svg{position:absolute;inset:0;width:100%;height:100%}
       .rail-rim{fill:none;stroke:color-mix(in srgb,var(--primary-text-color) 11%,transparent);stroke-width:8;stroke-linecap:round}
-      .rail-core{fill:none;stroke:color-mix(in srgb,var(--card-background-color) 88%,transparent);stroke-width:5;stroke-linecap:round}
+      .rail-core{fill:none;stroke:color-mix(in srgb,var(--card-solid) 88%,transparent);stroke-width:5;stroke-linecap:round}
       .cable{fill:none;stroke:var(--accent);stroke-width:2.8;stroke-linecap:round;stroke-dasharray:2 11;opacity:.82;filter:drop-shadow(0 0 5px color-mix(in srgb,var(--accent) 75%,transparent));animation:cable-dash linear infinite}
       .cable.branch{stroke:var(--good);filter:drop-shadow(0 0 5px color-mix(in srgb,var(--good) 75%,transparent))}
       .cable.idle{opacity:.08;animation-play-state:paused}
       @keyframes cable-dash{to{stroke-dashoffset:-28}}
       @keyframes core-breathe{0%,100%{transform:translate(-50%,-50%) scale(.82);opacity:.38}50%{transform:translate(-50%,-50%) scale(1.08);opacity:.75}}
-      .spark{fill:var(--card-background-color);stroke:var(--accent);stroke-width:2;filter:drop-shadow(0 0 5px var(--accent))}
+      .spark{fill:var(--card-solid);stroke:var(--accent);stroke-width:2;filter:drop-shadow(0 0 5px var(--accent))}
       .spark.branch{stroke:var(--good);filter:drop-shadow(0 0 5px var(--good))}
       .spark.idle{display:none}
       .node{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;z-index:2;transition:transform .2s ease}
@@ -173,16 +173,16 @@ class HAPowerFlowCard extends HTMLElement {
       .node-badge{position:relative;width:46px;height:46px}
       .ring{position:absolute;inset:0;border-radius:16px;border:1.5px solid var(--accent);opacity:0;animation:ring-ping 2.6s ease-out infinite}
       .ring.good{border-color:var(--good)}
-      .node-icon{position:relative;display:grid;place-items:center;width:46px;height:46px;border-radius:16px;background:color-mix(in srgb,var(--card-background-color) 84%,var(--accent) 16%);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 42%,transparent);box-shadow:0 8px 24px color-mix(in srgb,var(--accent) 16%,transparent),inset 0 1px 0 color-mix(in srgb,var(--primary-text-color) 12%,transparent);backdrop-filter:blur(8px)}
+      .node-icon{position:relative;display:grid;place-items:center;width:46px;height:46px;border-radius:16px;background:color-mix(in srgb,var(--card-solid) 84%,var(--accent) 16%);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 42%,transparent);box-shadow:0 8px 24px color-mix(in srgb,var(--accent) 16%,transparent),inset 0 1px 0 color-mix(in srgb,var(--primary-text-color) 12%,transparent);backdrop-filter:blur(8px)}
       .node.home .node-badge,.node.home .node-icon{width:58px;height:58px}
       .node.home .node-icon{border-radius:20px;box-shadow:0 10px 34px color-mix(in srgb,var(--accent) 25%,transparent),inset 0 1px 0 color-mix(in srgb,var(--primary-text-color) 14%,transparent)}
-      .node-icon.good{background:color-mix(in srgb,var(--card-background-color) 84%,var(--good) 16%);color:var(--good);border-color:color-mix(in srgb,var(--good) 42%,transparent)}
+      .node-icon.good{background:color-mix(in srgb,var(--card-solid) 84%,var(--good) 16%);color:var(--good);border-color:color-mix(in srgb,var(--good) 42%,transparent)}
       .node-icon.dim{opacity:.35;filter:grayscale(.4)}
       .node-icon ha-icon{--mdc-icon-size:23px}
       .node.home .node-icon ha-icon{--mdc-icon-size:29px}
       @keyframes ring-ping{0%{transform:scale(.9);opacity:.48}100%{transform:scale(1.55);opacity:0}}
       .node span{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--secondary-text-color)}
-      .node b{font-size:11px;font-weight:800;padding:3px 7px;border-radius:999px;background:color-mix(in srgb,var(--card-background-color) 82%,transparent);border:1px solid var(--edge);backdrop-filter:blur(6px)}
+      .node b{font-size:11px;font-weight:800;padding:3px 7px;border-radius:999px;background:color-mix(in srgb,var(--card-solid) 82%,transparent);border:1px solid var(--edge);backdrop-filter:blur(6px)}
 
       .breakdown{margin:18px 0 4px}
       .breakdown-head{display:flex;justify-content:space-between;font-size:10px;color:var(--secondary-text-color);margin-bottom:5px;text-transform:uppercase;font-weight:700;letter-spacing:.03em}
