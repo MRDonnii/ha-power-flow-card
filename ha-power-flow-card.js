@@ -1,4 +1,4 @@
-const VERSION = "0.4.2";
+const VERSION = "0.5.0";
 
 class HAPowerFlowCard extends HTMLElement {
   constructor() {
@@ -182,7 +182,7 @@ class HAPowerFlowCard extends HTMLElement {
       .node.home .node-icon ha-icon{--mdc-icon-size:29px}
       @keyframes ring-ping{0%{transform:scale(.9);opacity:.48}100%{transform:scale(1.55);opacity:0}}
       .node span{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--secondary-text-color)}
-      .node b{font-size:11px;font-weight:800;padding:3px 7px;border-radius:999px;background:color-mix(in srgb,var(--card-solid) 82%,transparent);border:1px solid var(--edge);backdrop-filter:blur(6px)}
+      .node b{font-size:11px;font-weight:800;padding:3px 7px;border-radius:999px;background:color-mix(in srgb,var(--card-solid) 82%,transparent);border:1px solid color-mix(in srgb,var(--accent) 18%,var(--edge));backdrop-filter:blur(6px)}
 
       .breakdown{margin:18px 0 4px}
       .breakdown-head{display:flex;justify-content:space-between;font-size:10px;color:var(--secondary-text-color);margin-bottom:5px;text-transform:uppercase;font-weight:700;letter-spacing:.03em}
@@ -212,7 +212,7 @@ class HAPowerFlowCard extends HTMLElement {
       .axis{display:flex;justify-content:space-between;margin-top:4px;font-size:8px;color:var(--secondary-text-color)}
 
       .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
-      .stat{padding:11px;border:1px solid var(--edge);border-radius:14px;text-align:center}
+      .stat{padding:11px;border:1px solid color-mix(in srgb,var(--accent) 16%,transparent);border-left:3px solid var(--accent);border-radius:14px;background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 6%,transparent),transparent 55%);box-shadow:0 4px 12px rgba(0,0,0,.08);text-align:center}
       .stat span{display:block;font-size:9px;color:var(--secondary-text-color);text-transform:uppercase;font-weight:700;letter-spacing:.03em}
       .stat b{display:block;margin-top:4px;font-size:14px;font-weight:800}
       @media(max-width:420px){.price b{font-size:32px}.stats{grid-template-columns:1fr 1fr}.flow{height:164px}.node-badge,.node-icon{width:42px;height:42px}.node.home .node-badge,.node.home .node-icon{width:54px;height:54px}}
