@@ -1,4 +1,4 @@
-const VERSION = "0.4.0";
+const VERSION = "0.4.1";
 
 class HAPowerFlowCard extends HTMLElement {
   constructor() {
@@ -140,7 +140,7 @@ class HAPowerFlowCard extends HTMLElement {
     const nowHour = now.getHours();
 
     this.shadowRoot.innerHTML = `<style>
-      :host{display:block;--good:var(--dashboard-success,#54d9aa);--warn:var(--dashboard-warning,#ffbd59);--danger:var(--dashboard-danger,#ff667a);--accent:var(--dashboard-accent,#62b5ff);--edge:var(--dashboard-border-neutral,rgba(127,145,165,.2))}
+      :host{display:block;--good:var(--dashboard-success, var(--success-color, #54d9aa));--warn:var(--dashboard-warning, var(--warning-color, #ffbd59));--danger:var(--dashboard-danger, var(--error-color, #ff667a));--accent:var(--dashboard-accent, var(--primary-color, #62b5ff));--edge:var(--dashboard-border-neutral, var(--divider-color, rgba(127,145,165,.2)))}
       *{box-sizing:border-box}
       ha-card{position:relative;overflow:hidden;padding:20px;border-radius:26px;background:linear-gradient(150deg,color-mix(in srgb,var(--card-background-color) 94%,${tierColor} 6%),var(--card-background-color));border:1px solid color-mix(in srgb,var(--edge) 100%,transparent);color:var(--primary-text-color);box-shadow:var(--ha-card-box-shadow)}
       .head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
