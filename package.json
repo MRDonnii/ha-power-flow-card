@@ -1,1 +1,1 @@
-{"name":"ha-power-flow-card","version":"0.4.0","description":"Home Assistant Lovelace custom card","license":"MIT","scripts":{"check":"node --check ha-power-flow-card.js"}}
+{"name":"ha-power-flow-card","version":"0.4.2","description":"Home Assistant Lovelace custom card","license":"MIT","scripts":{"check":"node --check ha-power-flow-card.js"}}
