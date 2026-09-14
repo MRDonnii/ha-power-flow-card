@@ -19,6 +19,11 @@ Kopiér `ha-power-flow-card.js` til `/config/www/ha-power-flow-card/` og registr
 
 Tilføj derefter korttypen `custom:ha-power-flow-card` i Lovelace. De nødvendige entities angives i kortets konfiguration; repositoryet indeholder ingen installationens dashboardkonfiguration eller personlige data.
 
+Den absolutte prisgradient bruger grøn 0–1 kr, gul frem mod 2 kr, orange frem
+mod 4 kr, rød ved 5 kr og mørkerød ved 6 kr. Søjlepuls over 6 kr er slået til
+som standard og kan styres i korteditoren eller med
+`high_price_animation: false`.
+
 ## Udvikling
 
 ```bash
